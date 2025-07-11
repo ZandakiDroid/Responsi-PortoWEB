@@ -1,10 +1,23 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import { ref } from 'vue';
 import SectionTitle from './SectionTitle.vue';
+// Axios dan onMounted tidak lagi diperlukan untuk data statis
 
-const skills = ref([]);
+// Gabungkan semua logika ke dalam <script setup>
 
+// 1. Definisikan data skill secara statis berdasarkan deskripsi Anda
+const skills = ref([
+  { name: 'HTML5', level: 'Mahir' },
+  { name: 'CSS3 & Tailwind', level: 'Mahir' },
+  { name: 'JavaScript', level: 'Menengah' },
+  { name: 'Vue.js', level: 'Menengah' },
+  { name: 'UI/UX Design', level: 'Menengah' },
+  { name: 'Figma', level: 'Menengah' },
+  { name: 'Penetration Testing', level: 'Dasar' },
+  { name: 'Digital Drawing', level: 'Dasar' },
+]);
+
+// 2. Definisikan method sebagai fungsi konstan di dalam <script setup>
 const getSkillLevelWidth = (level) => {
   switch (level.toLowerCase()) {
     case 'mahir': return '90%';
@@ -14,15 +27,6 @@ const getSkillLevelWidth = (level) => {
     default: return '50%';
   }
 };
-
-onMounted(async () => {
-  try {
-    const response = await axios.get('/api/skills');
-    skills.value = response.data;
-  } catch (error) {
-    console.error('Error fetching skills:', error);
-  }
-});
 </script>
 
 <template>
