@@ -6,7 +6,11 @@ const { educationHistory, skills, projects } = require('./data');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve frontend static files (for Vercel, use 'frontend/dist')
+app.use(cors());
+app.use(express.json());
+
+// Serve static files for images (for Vercel and local)
+app.use('/image', express.static(path.join(__dirname, '../frontend/dist/image')));
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // API routes
