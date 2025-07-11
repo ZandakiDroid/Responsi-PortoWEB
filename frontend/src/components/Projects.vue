@@ -1,34 +1,18 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import SectionTitle from './SectionTitle.vue';
 
-// Axios dan onMounted tidak diperlukan lagi, kita hapus.
+const projects = ref([]);
 
-// Definisikan data proyek secara statis.
-// Anda bisa menambahkan atau mengubah proyek ini sesuai kebutuhan.
-const projects = ref([
-  {
-    title: 'Website JWR Comp',
-    description: 'Sebuah website e-commerce yang dirancang untuk JWR Comp, toko yang menjual komponen dan aksesoris komputer. Dilengkapi dengan katalog produk, detail barang, dan desain yang responsif.',
-    image: 'src/image/jwrcomp.png',
-    tech: ['Vue.js', 'Tailwind CSS', 'Node.js', 'Express'],
-    link: '#' // Ganti '#' dengan link GitHub atau link live proyek Anda
-  },
-  {
-    title: 'Portofolio Pribadi',
-    description: 'Proyek website portofolio ini sendiri, dirancang dan dikembangkan untuk menampilkan keahlian, riwayat pendidikan, dan proyek-proyek saya. Dibangun dengan teknologi web modern untuk performa yang cepat.',
-    image: 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-    tech: ['Vue 3', 'Vite', 'Tailwind CSS', 'Figma'],
-    link: '#' // Ganti '#' dengan link GitHub ke repositori portofolio ini
-  },
-  {
-    title: 'Alat Keamanan Jaringan',
-    description: 'Sebuah tool command-line sederhana yang dibuat dengan Python untuk melakukan pemindaian port dasar pada jaringan lokal. Proyek ini bertujuan untuk melatih fundamental keamanan siber dan networking.',
-    image: 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-    tech: ['Python', 'Scapy', 'CLI'],
-    link: '#' // Ganti '#' dengan link GitHub ke repositori proyek ini
+onMounted(async () => {
+  try {
+    const response = await axios.get('/api/projects');
+    projects.value = response.data;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
   }
-]);
+});
 </script>
 
 <template>
