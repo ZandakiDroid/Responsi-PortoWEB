@@ -1,45 +1,18 @@
 <script setup>
-import { ref } from 'vue';
-// Axios dan onMounted tidak diperlukan lagi untuk data statis, jadi kita hapus.
-// import axios from 'axios';
-// import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import SectionTitle from './SectionTitle.vue';
 
-// Ganti pengambilan data API dengan data statis langsung di sini.
-// Urutkan dari yang terbaru (kuliah) ke yang terlama (SMA).
-const educationHistory = ref([
-  {
-    id: 1,
-    period: '2023 - Sekarang',
-    institution: 'Universitas Amikom Yogyakarta',
-    major: 'S1 - Informatika'
-  },
-  {
-    id: 2,
-    period: '2020 - 2023',
-    institution: 'SMA Negeri 3 Klaten',
-    major: 'MIPA (Matematika dan Ilmu Pengetahuan Alam)'
-  },
-  // Anda bisa menambahkan riwayat pendidikan lain di sini jika ada (misal: SMP)
-  // {
-  //   id: 3,
-  //   period: '2015 - 2018',
-  //   institution: 'SMP Negeri X',
-  //   major: 'Siswa'
-  // }
-]);
+const educationHistory = ref([]);
 
-// Fungsi onMounted yang mengambil data dari API dihapus.
-/*
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/education');
+    const response = await axios.get('/api/education');
     educationHistory.value = response.data;
   } catch (error) {
     console.error('Error fetching education history:', error);
   }
 });
-*/
 </script>
 
 <template>
