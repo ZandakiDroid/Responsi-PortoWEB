@@ -18,7 +18,7 @@ const projects = [
   {
     title: 'Website JWR Comp',
     description: 'Sebuah website e-commerce yang dirancang untuk JWR Comp, toko yang menjual komponen dan aksesoris komputer. Dilengkapi dengan katalog produk, detail barang, dan desain yang responsif.',
-    image: '/image/jwrcomp.png', // Updated path to be relative to the public directory
+    image: '/image/jwrcomp.png', // Path remains the same, assuming it's in frontend/public/image
     tech: ['Vue.js', 'Tailwind CSS', 'Node.js', 'Express'],
     link: '#'
   },
